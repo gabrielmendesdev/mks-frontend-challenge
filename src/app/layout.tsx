@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import './globals.scss'
+import { ReactQueryClientProvider } from './components/context/ReactQueryClientProvide'
 
 const inter = Montserrat({ subsets: ['latin'] })
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-br'>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+      </body>
     </html>
   )
 }
