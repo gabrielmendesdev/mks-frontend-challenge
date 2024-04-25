@@ -1,5 +1,7 @@
+import variables from './variables.module.scss'
+
 export default function Home() {
   return (
-    <h1>heading</h1>
+    <h1 style={{ color: variables.primaryColor }}>Hello, Next.js!</h1>
   )
 }
