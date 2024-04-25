@@ -8,7 +8,7 @@ export default function Home() {
     <div>
       <h1 style={{ color: variables.primaryColor }}>Hello, Next.js!</h1>
       <motion.div
-      className='w-52 h-52 bg-black'
+        className='w-52 h-52 bg-black'
         whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 1.1 }}
         drag='x'
