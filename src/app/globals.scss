@@ -1,0 +1,14 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$bg-header: #0F52BA;
+ 
+.header {
+  background-color: $bg-header;
+}
+
+.logo {
+  font-size: 2em;
+}
