@@ -21,7 +21,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__tests__/page.test.jsx", "__tests__/snapshot.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__tests__/page.test.jsx", "__tests__/snapshot.jsx", "src/app/components/Header/anim.ts"],
   "exclude": ["node_modules"],
   "typeAcquisition": {
     "include": [

@@ -1,0 +1,27 @@
+.cardContainer {
+  box-shadow: -1px 4px 11px 0px #00000036;;
+
+  .cardImage {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .cardFont {
+    color: #2C2C2C;
+  }
+
+  .cardDescription {
+    font-size: 0.7rem;
+  }
+
+  .purchaseButton {
+    background-color: #0F52BA;
+  }
+}
+
+
