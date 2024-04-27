@@ -1,3 +1,5 @@
+// ProductCard.tsx
+import React, { MouseEventHandler } from 'react'
 import { Product } from '@/app/types'
 import { Title } from '../Title'
 import { Paragraph } from '../Paragraph'
@@ -6,18 +8,26 @@ import shoppingBag from '../../assets/bag-shopping.svg'
 import Image from 'next/image'
 import styles from './styles.module.scss'
 import { useProductContext } from '@/app/components/context/ProductContextProvider'
-import { useState } from 'react'
 
-export const ProductCard = (product: Product): JSX.Element => {
+interface ProductCardProps {
+  product: Product
+  onClick: MouseEventHandler
+}
+
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  onClick,
+}) => {
   const { name, description, brand, photo, price } = product
   const { addProduct } = useProductContext()
 
-  const handleBuyBlick = () => {
+  const handleBuyClick = () => {
     addProduct(product)
   }
 
   return (
     <li
+      onClick={onClick}
       className={`${styles.cardContainer} rounded-2xl flex flex-col bg-white m-auto max-w-72 md:max-w-72 h-full`}
     >
       <Image
@@ -43,7 +53,7 @@ export const ProductCard = (product: Product): JSX.Element => {
       </Paragraph>
       <button
         className={`${styles.purchaseButton} w-full text-white rounded-b-2xl p-1`}
-        onClick={handleBuyBlick}
+        onClick={handleBuyClick}
       >
         <div className='flex text-center justify-center gap-2'>
           <Image

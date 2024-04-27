@@ -1,3 +1,10 @@
+.alert {
+  top: -200px;
+  position: relative;
+  width: max-content;
+  margin: auto;
+}
+
 @media (min-width: 1536px) {
   .storeContainer {
     max-width: 1280px;
