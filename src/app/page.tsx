@@ -2,8 +2,8 @@
 
 import { Header } from './components/Header'
 import { StoreContent } from './components/StoreContent'
-import { ProductProvider } from './components/context/ProductContextProvider'
-import { ReactQueryClientProvider } from './components/context/ReactQueryClientProvide'
+import { ProductProvider } from './context/ProductContextProvider'
+import { ReactQueryClientProvider } from './context/ReactQueryClientProvide'
 
 export default function Home() {
   return (

@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { menuSlide } from '../anim'
 import Curve from './Curve'
 import { Title } from '../../Title'
-import { useProductContext } from '../../context/ProductContextProvider'
+import { useProductContext } from '../../../context/ProductContextProvider'
 import { Product } from '@/app/types'
 import { ProductCartShoppingCard } from './ProductCartShoppingCard'
 

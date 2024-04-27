@@ -8,7 +8,7 @@ import Ripples from 'react-ripples'
 import shoppingBag from '../../assets/bag-shopping.svg'
 import Image from 'next/image'
 import styles from './styles.module.scss'
-import { useProductContext } from '@/app/components/context/ProductContextProvider'
+import { useProductContext } from '@/app/context/ProductContextProvider'
 
 interface ProductCardProps {
   product: Product

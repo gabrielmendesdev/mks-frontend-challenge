@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import styles from './styles.module.scss'
 import { Nav } from './Nav'
-import { useProductContext } from '../context/ProductContextProvider'
+import { useProductContext } from '../../context/ProductContextProvider'
 
 export const Header: React.FC = (): JSX.Element => {
   const [isActive, setIsActive] = useState<boolean>(false)

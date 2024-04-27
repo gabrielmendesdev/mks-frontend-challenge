@@ -4,11 +4,10 @@ import axios from 'axios'
 import { ProductCard } from '../ProductCard'
 import styles from './styles.module.scss'
 import Loading from '../Loading'
-import { useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 
 async function fetchProducts() {
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 2000)) //Timeout apenas para a vizualização da animação do loading...
   const res = await axios.get(
     'https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=10&sortBy=id&orderBy=DESC'
   )
@@ -16,13 +15,11 @@ async function fetchProducts() {
 }
 
 export function StoreContent() {
-  const [divPosition, setDivPosition] = useState(0)
-
-  const controls = useAnimation();
+  const controls = useAnimation()
   const handleClick = async () => {
-    await controls.start({ y: 100 }); // Inicia a animação
-    await controls.start({ y: 100, transition: { delay: 2.5 } });
-    await controls.start({ y: -100 }); // Torna a div invisível após a animação
+    await controls.start({ y: 192 })
+    await controls.start({ y: 192, transition: { delay: 3 } }) // Mantém a div estática para a leitura do usuário
+    await controls.start({ y: -100 })
   }
 
   const { isPending, isError, data, error } = useQuery({
@@ -50,12 +47,12 @@ export function StoreContent() {
     <div className={`${styles.storeContainer} container h-max m-auto`}>
       <div className={`w-full ${styles.alertCointainer}`}>
         <motion.div
-          initial={{ y: 0 }} // Posição inicial
+          initial={{ y: 0 }}
           animate={controls}
           transition={{
             type: 'spring',
             stiffness: 500,
-            damping: 30
+            damping: 30,
           }}
           className={`p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 fixed ${styles.alert}`}
           role='alert'

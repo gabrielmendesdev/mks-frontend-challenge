@@ -3,7 +3,7 @@ import Image from 'next/image'
 import CountButton from '../CountButton'
 import { Product } from '@/app/types'
 import CloseBlackButton from '../../../../assets/close-black-circle.svg'
-import { useProductContext } from '@/app/components/context/ProductContextProvider'
+import { useProductContext } from '@/app/context/ProductContextProvider'
 import styles from './styles.module.scss'
 import { useState } from 'react'
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import './globals.scss'
-import { ReactQueryClientProvider } from './components/context/ReactQueryClientProvide'
+import { ReactQueryClientProvider } from './context/ReactQueryClientProvide'
 
 const inter = Montserrat({ subsets: ['latin'] })
 
