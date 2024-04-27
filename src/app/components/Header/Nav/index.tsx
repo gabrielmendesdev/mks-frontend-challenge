@@ -7,10 +7,6 @@ import Curve from './Curve'
 import { Title } from '../../Title'
 import { useProductContext } from '../../context/ProductContextProvider'
 import { Product } from '@/app/types'
-import { Paragraph } from '../../Paragraph'
-import CloseBlackButton from '../../../assets/close-black-circle.svg'
-import CountButton from './CountButton'
-import { useEffect, useState } from 'react'
 import { ProductCartShoppingCard } from './ProductCartShoppingCard'
 
 interface NavProps {
@@ -48,12 +44,17 @@ export const Nav = ({ onClose }: NavProps): JSX.Element => {
         <div className='overflow-x-hidden h-full flex flex-col'>
           <div className='p-6 overflow-y-auto'>
             {selectedProducts.map(
-              ({ id, brand, name, price, photo, description }: Product) => {
-                console.log(selectedProducts)
-                return (
-                <ProductCartShoppingCard id={id} brand={brand} name={name} photo={photo} price={price} key={id} description={description}/>
+              ({ id, brand, name, price, photo, description }: Product) => (
+                <ProductCartShoppingCard
+                  id={id}
+                  brand={brand}
+                  name={name}
+                  photo={photo}
+                  price={price}
+                  key={id}
+                  description={description}
+                />
               )
-              }
             )}
           </div>
           <button

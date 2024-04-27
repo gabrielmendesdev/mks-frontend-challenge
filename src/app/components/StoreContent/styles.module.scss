@@ -1,8 +1,16 @@
 .alert {
-  top: -200px;
-  position: relative;
   width: max-content;
   margin: auto;
+}
+
+.alertCointainer {
+  top: -200px;
+}
+
+@media (max-width: 768px) {
+  .alert {
+    max-width: 250px;
+  }
 }
 
 @media (min-width: 1536px) {

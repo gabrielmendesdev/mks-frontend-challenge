@@ -19,7 +19,7 @@ export function StoreContent() {
   const [divPosition, setDivPosition] = useState(0)
   const handleClick = () => {
     // Define a nova posição da div (descendo 200px)
-    setDivPosition(100)
+    setDivPosition(280)
 
     // Após 2 segundos, volta para a posição inicial
     setTimeout(() => {
@@ -50,21 +50,23 @@ export function StoreContent() {
 
   return (
     <div className={`${styles.storeContainer} container pt-28 h-max m-auto`}>
-      <motion.div
-        initial={{ y: 0 }} // Posição inicial
-        animate={{y: divPosition}}
-        transition={{
-          type: 'spring',
-          stiffness: 500,
-          damping: 30,
-        }}
-        className={`p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 ${styles.alert}`}
-        role='alert'
-      >
-        <span className='font-medium'>
-          Parabéns! você adicionou um novo item ao carrinho com sucesso.
-        </span>
-      </motion.div>
+      <div className={`w-full items-center justify-center fixed ${styles.alertCointainer}`}>
+        <motion.div
+          initial={{ y: 0 }} // Posição inicial
+          animate={{y: divPosition}}
+          transition={{
+            type: 'spring',
+            stiffness: 500,
+            damping: 30,
+          }}
+          className={`p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 ${styles.alert}`}
+          role='alert'
+        >
+          <span className='font-medium'>
+            Parabéns! você adicionou um novo item ao carrinho com sucesso.
+          </span>
+        </motion.div>
+      </div>
       <ul className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 p-0 h-max'>
         {data.products.map(
           ({ id, name, photo, brand, description, price }: Product) => (
