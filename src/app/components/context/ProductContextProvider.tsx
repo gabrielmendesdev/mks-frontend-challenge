@@ -5,12 +5,14 @@ interface ProductContextType {
   selectedProducts: Product[]
   addProduct: (product: Product) => void
   removeProduct: (productId: number) => void
+  setSelectedProducts: React.Dispatch<React.SetStateAction<Product[]>>
 }
 
 const ProductContext = createContext<ProductContextType>({
   selectedProducts: [],
   addProduct: () => {},
   removeProduct: () => {},
+  setSelectedProducts: () => []
 })
 
 export const useProductContext = () => useContext(ProductContext)
@@ -32,7 +34,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <ProductContext.Provider
-      value={{ selectedProducts, addProduct, removeProduct }}
+      value={{ selectedProducts, addProduct, removeProduct, setSelectedProducts }}
     >
       {children}
     </ProductContext.Provider>
