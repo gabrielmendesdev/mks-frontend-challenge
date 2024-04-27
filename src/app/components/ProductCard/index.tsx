@@ -4,6 +4,7 @@ import { Product } from '@/app/types'
 import { Title } from '../Title'
 import { Paragraph } from '../Paragraph'
 import { PriceContent } from './PriceContent'
+import Ripples from 'react-ripples'
 import shoppingBag from '../../assets/bag-shopping.svg'
 import Image from 'next/image'
 import styles from './styles.module.scss'
@@ -52,18 +53,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </Paragraph>
       <button
         className={`w-full text-white rounded-b-2xl p-2`}
-        onClick={handleBuyClick}
       >
-        <div className={`${styles.purchaseButton} rounded-md flex text-center justify-center gap-2 p-2`} onClick={onClick}>
-          <Image
-            src={shoppingBag}
-            alt='Foto da mercadoria'
-            width={20}
-            height={20}
-            priority
-          />
-          <Paragraph className='font-medium'>COMPRAR</Paragraph>
-        </div>
+        <Ripples placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} className='w-full' onClick={handleBuyClick}>
+          <div className={`${styles.purchaseButton} rounded-md flex text-center justify-center gap-2 p-2 w-full`} onClick={onClick}>
+            <Image
+              src={shoppingBag}
+              alt='Foto da mercadoria'
+              width={20}
+              height={20}
+              priority
+            />
+            <Paragraph className='font-medium'>COMPRAR</Paragraph>
+          </div>
+        </Ripples>
       </button>
     </li>
   )
