@@ -13,7 +13,7 @@
     "prepare": "husky",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:staged": "npm test -- --findRelatedTests"
+    "test:staged": "npm test -- --findRelatedTests --passWithNoTests"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.32.0",

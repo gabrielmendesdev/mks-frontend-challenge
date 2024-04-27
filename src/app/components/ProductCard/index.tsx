@@ -6,6 +6,7 @@ import shoppingBag from '../../assets/bag-shopping.svg'
 import Image from 'next/image'
 import styles from './styles.module.scss'
 import { useProductContext } from '@/app/components/context/ProductContextProvider'
+import { useState } from 'react'
 
 export const ProductCard = (product: Product): JSX.Element => {
   const { name, description, brand, photo, price } = product
@@ -52,7 +53,7 @@ export const ProductCard = (product: Product): JSX.Element => {
             height={24}
             priority
           />
-          <Paragraph className='font-medium '>COMPRAR</Paragraph>
+          <Paragraph className='font-medium'>COMPRAR</Paragraph>
         </div>
       </button>
     </li>

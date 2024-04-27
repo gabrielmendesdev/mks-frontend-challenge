@@ -1,18 +1,13 @@
-import { useState } from 'react'
+import { MouseEventHandler, useState } from 'react'
 import styles from './styles.module.scss'
 
-const CountButton = () => {
-  const [quantity, setQuantity] = useState(1)
+interface CountButtonProps {
+  quantity: number
+  decreaseQuantity: MouseEventHandler<HTMLButtonElement> | undefined
+  increaseQuantity: MouseEventHandler<HTMLButtonElement> | undefined
+}
 
-  const decreaseQuantity = () => {
-    if (quantity > 0) {
-      setQuantity((prevQuantity) => prevQuantity - 1)
-    }
-  }
-
-  const increaseQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1)
-  }
+const CountButton:React.FC<CountButtonProps> = ({quantity, increaseQuantity, decreaseQuantity}): JSX.Element => {
 
   return (
     <div className='flex items-center flex-col m-auto'>
