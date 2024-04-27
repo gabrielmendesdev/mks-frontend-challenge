@@ -9,7 +9,6 @@ import { useProductContext } from '../context/ProductContextProvider'
 
 export const Header: React.FC = (): JSX.Element => {
   const [isActive, setIsActive] = useState<boolean>(false)
-  
 
   const handleNavClose = () => {
     setIsActive(false)
