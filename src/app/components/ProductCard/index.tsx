@@ -27,8 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <li
-      onClick={onClick}
-      className={`${styles.cardContainer} rounded-2xl flex flex-col bg-white m-auto max-w-72 md:max-w-72 h-full`}
+      className={`${styles.cardContainer} rounded-md flex flex-col bg-white m-auto max-w-72 md:max-w-72 h-full border`}
     >
       <Image
         src={photo}
@@ -52,15 +51,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {description}
       </Paragraph>
       <button
-        className={`${styles.purchaseButton} w-full text-white rounded-b-2xl p-1`}
+        className={`w-full text-white rounded-b-2xl p-2`}
         onClick={handleBuyClick}
       >
-        <div className='flex text-center justify-center gap-2'>
+        <div className={`${styles.purchaseButton} rounded-md flex text-center justify-center gap-2 p-2`} onClick={onClick}>
           <Image
             src={shoppingBag}
             alt='Foto da mercadoria'
-            width={24}
-            height={24}
+            width={20}
+            height={20}
             priority
           />
           <Paragraph className='font-medium'>COMPRAR</Paragraph>

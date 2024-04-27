@@ -18,13 +18,11 @@ async function fetchProducts() {
 export function StoreContent() {
   const [divPosition, setDivPosition] = useState(0)
   const handleClick = () => {
-    // Define a nova posição da div (descendo 200px)
-    setDivPosition(280)
+    setDivPosition(50)
 
-    // Após 2 segundos, volta para a posição inicial
     setTimeout(() => {
       setDivPosition(0)
-    }, 2000) // Tempo em milissegundos (2000ms = 2 segundos)
+    }, 4000)
   }
 
   const { isPending, isError, data, error } = useQuery({
@@ -49,8 +47,8 @@ export function StoreContent() {
   }
 
   return (
-    <div className={`${styles.storeContainer} container pt-28 h-max m-auto`}>
-      <div className={`w-full items-center justify-center fixed ${styles.alertCointainer}`}>
+    <div className={`${styles.storeContainer} container h-max m-auto`}>
+      <div className={`w-full ${styles.alertCointainer}`}>
         <motion.div
           initial={{ y: 0 }} // Posição inicial
           animate={{y: divPosition}}
@@ -67,7 +65,7 @@ export function StoreContent() {
           </span>
         </motion.div>
       </div>
-      <ul className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 p-0 h-max'>
+      <ul className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 p-0 h-max  pt-20'>
         {data.products.map(
           ({ id, name, photo, brand, description, price }: Product) => (
             <ProductCard
