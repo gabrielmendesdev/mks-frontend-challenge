@@ -5,7 +5,7 @@ import { ProductCard } from '../ProductCard'
 import styles from './styles.module.scss'
 import Loading from '../Loading'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 
 async function fetchProducts() {
   await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -17,12 +17,12 @@ async function fetchProducts() {
 
 export function StoreContent() {
   const [divPosition, setDivPosition] = useState(0)
-  const handleClick = () => {
-    setDivPosition(50)
 
-    setTimeout(() => {
-      setDivPosition(0)
-    }, 4000)
+  const controls = useAnimation();
+  const handleClick = async () => {
+    await controls.start({ y: 100 }); // Inicia a animação
+    await controls.start({ y: 100, transition: { delay: 2.5 } });
+    await controls.start({ y: -100 }); // Torna a div invisível após a animação
   }
 
   const { isPending, isError, data, error } = useQuery({
@@ -51,13 +51,13 @@ export function StoreContent() {
       <div className={`w-full ${styles.alertCointainer}`}>
         <motion.div
           initial={{ y: 0 }} // Posição inicial
-          animate={{y: divPosition}}
+          animate={controls}
           transition={{
             type: 'spring',
             stiffness: 500,
-            damping: 30,
+            damping: 30
           }}
-          className={`p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 ${styles.alert}`}
+          className={`p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 fixed ${styles.alert}`}
           role='alert'
         >
           <span className='font-medium'>
@@ -65,7 +65,7 @@ export function StoreContent() {
           </span>
         </motion.div>
       </div>
-      <ul className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 p-0 h-max  pt-20'>
+      <ul className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 p-0 h-max  pt-28'>
         {data.products.map(
           ({ id, name, photo, brand, description, price }: Product) => (
             <ProductCard

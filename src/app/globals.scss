@@ -2,16 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-$bg-header: #0F52BA;
-
 body {
   background-color: #f3f3f3;
   height: 100vh;
 }
- 
-.header {
-  background-color: $bg-header;
-}
+
 
 .logo {
   font-size: 2em;

@@ -18,7 +18,7 @@ export const Header: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <header className='w-full h-20 header flex items-center justify-between px-10 md:px-20 fixed'>
+      <header className={`${styles.header} w-full h-20 header flex items-center justify-between px-10 md:px-20 fixed`}>
         <div className='flex'>
           <Title className='text-white logo'>MKS</Title>
           <Title className='text-white ml-2 mt-4 font-light'>Sistemas</Title>

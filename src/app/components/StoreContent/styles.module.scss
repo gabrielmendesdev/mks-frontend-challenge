@@ -1,10 +1,13 @@
 .alert {
   width: max-content;
   margin: auto;
+  z-index: 9;
 }
 
 .alertCointainer {
-  top: -150px;
+  top: -100px;
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
