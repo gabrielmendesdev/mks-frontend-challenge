@@ -9,6 +9,8 @@ import { Title } from '../../Title'
 import { useProductContext } from '../../../context/ProductContextProvider'
 import { Product } from '@/app/types'
 import { ProductCartShoppingCard } from './ProductCartShoppingCard'
+import { useState } from 'react'
+import { Paragraph } from '../../Paragraph'
 
 interface NavProps {
   onClose: () => void // Função de retorno de chamada para fechar a navbar
@@ -16,6 +18,29 @@ interface NavProps {
 
 export const Nav = ({ onClose }: NavProps): JSX.Element => {
   const { selectedProducts, setSelectedProducts } = useProductContext()
+  const [totalValuesById, setTotalValuesById] = useState({})
+
+  const updateTotalValueById = (id: number, totalValue: number) => {
+    setTotalValuesById((prevTotalValues) => ({
+      ...prevTotalValues,
+      [id]: totalValue,
+    }))
+  }
+
+  const getTotalSum = () => {
+    const totalValues = Object.values(totalValuesById)
+    return totalValues.reduce((accumulator: number, currentValue: unknown) => {
+      if (typeof currentValue === 'number') {
+        return accumulator + currentValue
+      }
+      return accumulator
+    }, 0)
+  }
+
+  const clearCartShopping = () => {
+    setSelectedProducts([])
+    setTotalValuesById({})
+  }
 
   return (
     <motion.div
@@ -43,8 +68,11 @@ export const Nav = ({ onClose }: NavProps): JSX.Element => {
           </div>
         </div>
         <div className='overflow-x-hidden h-full flex flex-col'>
-          <div onClick={() => setSelectedProducts([])} className='flex items-center justify-center cursor-pointer w-max m-5 p-1 border rounded-lg'>
-          <Image
+          <div
+            onClick={() => clearCartShopping()}
+            className='flex items-center justify-center cursor-pointer w-max m-5 p-1 border rounded-lg'
+          >
+            <Image
               priority
               src={cartXMark}
               alt='Fechar o carrinho de compras'
@@ -57,23 +85,32 @@ export const Nav = ({ onClose }: NavProps): JSX.Element => {
             {selectedProducts.map(
               ({ id, brand, name, price, photo, description }: Product) => (
                 <ProductCartShoppingCard
-                  id={id}
-                  brand={brand}
-                  name={name}
-                  photo={photo}
-                  price={price}
                   key={id}
-                  description={description}
+                  product={{
+                    brand,
+                    description,
+                    name,
+                    price,
+                    photo,
+                    id,
+                  }}
+                  updateTotalValueById={updateTotalValueById}
                 />
               )
             )}
           </div>
-          <button
-            className={`${styles.footer} w-full mt-auto`}
-            onClick={() => window.location.reload()}
-          >
-            Finalizar Compra
-          </button>
+          <div className='mt-auto'>
+            <div className='p-6 flex justify-between'>
+              <Paragraph className='max-w-max text-xl'>Total:</Paragraph>
+              <Paragraph className='max-w-max text-xl'>R${getTotalSum()}</Paragraph>
+            </div>
+            <button
+              className={`${styles.footer} w-full mt-auto`}
+              onClick={() => window.location.reload()}
+            >
+              Finalizar Compra
+            </button>
+          </div>
         </div>
       </div>
 

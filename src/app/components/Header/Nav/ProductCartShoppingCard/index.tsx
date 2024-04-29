@@ -5,16 +5,16 @@ import { Product } from '@/app/types'
 import CloseBlackButton from '../../../../assets/close-black-circle.svg'
 import { useProductContext } from '@/app/context/ProductContextProvider'
 import styles from './styles.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export const ProductCartShoppingCard = ({
-  photo,
-  brand,
-  name,
-  id,
-  price,
-}: Product) => {
+interface ProductCartShoppingCardProps {
+  product: Product
+  updateTotalValueById: (id: number, totalValue: number) => void
+}
+
+export const ProductCartShoppingCard: React.FC<ProductCartShoppingCardProps> = ({ product, updateTotalValueById }) => {
   const { removeProduct } = useProductContext()
+  const { brand, id, name, photo, price } = product
 
   const [quantity, setQuantity] = useState<number>(1)
 
@@ -27,6 +27,13 @@ export const ProductCartShoppingCard = ({
   const handleIncrease = () => {
     setQuantity((prevQuantity) => prevQuantity + 1)
   }
+
+  const totalValue = parseFloat(price) * quantity
+
+  useEffect(() => {
+    // Chama a função de atualização do componente pai
+    updateTotalValueById(id, totalValue)
+  }, [totalValue])
 
   return (
     <div key={id}>
@@ -56,7 +63,7 @@ export const ProductCartShoppingCard = ({
           increaseQuantity={handleIncrease}
         />
         <Paragraph className='text-black font-extrabold m-auto'>
-          R${parseFloat(price) * quantity}
+          R${totalValue}
         </Paragraph>
       </div>
     </div>

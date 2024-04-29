@@ -54,7 +54,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <button
         className={`w-full text-white rounded-b-2xl p-2`}
       >
-        <Ripples placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} className='w-full' onClick={handleBuyClick}>
+        <Ripples className='w-full' onClick={handleBuyClick} placeholder='' onPointerEnterCapture='' onPointerLeaveCapture=''>
           <div className={`${styles.purchaseButton} rounded-md flex text-center justify-center gap-2 p-2 w-full`} onClick={onClick}>
             <Image
               src={shoppingBag}
