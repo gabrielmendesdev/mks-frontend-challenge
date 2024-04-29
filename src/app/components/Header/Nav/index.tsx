@@ -18,17 +18,19 @@ interface NavProps {
 
 export const Nav = ({ onClose }: NavProps): JSX.Element => {
   const { selectedProducts, setSelectedProducts } = useProductContext()
-  const [totalValuesById, setTotalValuesById] = useState({})
+  const [totalValueProductList, setTotalValueProductList] = useState({})
 
+  //Armazena o preço total de cada produto por seu id
   const updateTotalValueById = (id: number, totalValue: number) => {
-    setTotalValuesById((prevTotalValues) => ({
+    setTotalValueProductList((prevTotalValues) => ({
       ...prevTotalValues,
       [id]: totalValue,
     }))
   }
 
+  //Soma o valor de todos os produtos dentro do objeto totalValueProductListe retorna o valor total
   const getTotalSum = () => {
-    const totalValues = Object.values(totalValuesById)
+    const totalValues = Object.values(totalValueProductList)
     return totalValues.reduce((accumulator: number, currentValue: unknown) => {
       if (typeof currentValue === 'number') {
         return accumulator + currentValue
@@ -39,7 +41,7 @@ export const Nav = ({ onClose }: NavProps): JSX.Element => {
 
   const clearCartShopping = () => {
     setSelectedProducts([])
-    setTotalValuesById({})
+    setTotalValueProductList({})
   }
 
   return (

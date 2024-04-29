@@ -12,19 +12,15 @@ import { useProductContext } from '@/app/context/ProductContextProvider'
 
 interface ProductCardProps {
   product: Product
-  onClick: MouseEventHandler
+  displayAlert: () => void
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  onClick,
+  displayAlert,
 }) => {
   const { name, description, brand, photo, price } = product
   const { addProduct } = useProductContext()
-
-  const handleBuyClick = () => {
-    addProduct(product)
-  }
 
   return (
     <li
@@ -54,11 +50,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <button
         className={`w-full text-white rounded-b-2xl p-2`}
       >
-        <Ripples className='w-full' onClick={handleBuyClick} placeholder='' onPointerEnterCapture='' onPointerLeaveCapture=''>
-          <div className={`${styles.purchaseButton} rounded-md flex text-center justify-center gap-2 p-2 w-full`} onClick={onClick}>
+        <Ripples className='w-full' placeholder='' onPointerEnterCapture='' onPointerLeaveCapture=''>
+          <div className={`${styles.purchaseButton} rounded-md flex text-center justify-center gap-2 p-2 w-full`} onClick={() => addProduct(product) && displayAlert()}>
             <Image
               src={shoppingBag}
-              alt='Foto da mercadoria'
+              alt='Sacola de compras'
               width={20}
               height={20}
               priority

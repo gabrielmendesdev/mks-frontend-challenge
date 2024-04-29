@@ -16,7 +16,7 @@ async function fetchProducts() {
 
 export function StoreContent() {
   const controls = useAnimation()
-  const handleClick = async () => {
+  const displayAlert = async () => {
     await controls.start({ y: 192 })
     await controls.start({ y: 192, transition: { delay: 3 } }) // Mantém a div estática para a leitura do usuário
     await controls.start({ y: -100 })
@@ -75,7 +75,7 @@ export function StoreContent() {
                 price: price,
                 photo: photo,
               }}
-              onClick={handleClick}
+              displayAlert={displayAlert}
             />
           )
         )}

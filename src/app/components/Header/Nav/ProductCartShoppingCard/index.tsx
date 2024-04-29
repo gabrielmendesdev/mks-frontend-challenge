@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Paragraph } from '@/app/components/Paragraph'
 import Image from 'next/image'
 import CountButton from '../CountButton'
@@ -28,12 +29,18 @@ export const ProductCartShoppingCard: React.FC<ProductCartShoppingCardProps> = (
     setQuantity((prevQuantity) => prevQuantity + 1)
   }
 
-  const totalValue = parseFloat(price) * quantity
+  let totalValue = parseFloat(price) * quantity
 
   useEffect(() => {
     // Chama a função de atualização do componente pai
     updateTotalValueById(id, totalValue)
   }, [totalValue])
+
+  //Remove o produto da lista e corrige o valor total do carrinho
+  const removeProductUpdateValues = (id: number) => {
+    updateTotalValueById(id, 0)
+    removeProduct(id)
+  }
 
   return (
     <div key={id}>
@@ -43,7 +50,7 @@ export const ProductCartShoppingCard: React.FC<ProductCartShoppingCardProps> = (
         width={35}
         height={35}
         className={`ml-auto ${styles.exclueProduct} cursor-pointer`}
-        onClick={() => removeProduct(id)}
+        onClick={() => removeProductUpdateValues(id)}
       />
       <div className='grid grid-cols-1 justify-center items-center md:grid-cols-4 bg-white rounded-lg md:items-center p-4'>
         <Image

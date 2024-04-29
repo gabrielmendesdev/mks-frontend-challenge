@@ -3,7 +3,7 @@ import { Product } from '@/app/types'
 
 interface ProductContextType {
   selectedProducts: Product[]
-  addProduct: (product: Product) => void
+  addProduct: (product: Product) => void | boolean
   removeProduct: (productId: number) => void
   setSelectedProducts: React.Dispatch<React.SetStateAction<Product[]>>
 }
@@ -23,7 +23,19 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([])
 
   const addProduct = (product: Product) => {
-    setSelectedProducts((prevProducts) => [...prevProducts, product])
+    // Verifica se o produto já está na lista
+    const isProductAlreadySelected = selectedProducts.some(
+      (selectedProduct) => selectedProduct.id === product.id
+    )
+  
+    // Se o produto já estiver na lista, não o adiciona novamente
+    if (!isProductAlreadySelected) {
+      setSelectedProducts((prevProducts) => [...prevProducts, product]);
+      return true
+    } else {
+      alert('Produto já está no carrinho')
+      return false
+    }
   }
 
   const removeProduct = (productId: any) => {
